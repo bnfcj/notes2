@@ -7,10 +7,15 @@ if (process.env.NODE_ENV !== "production") {
 // Import the Express framework and Initialize an Express app
 const express = require("express");
 const app = express();
+
 // Import notesRoutesGroup
 const notesRoutesGroup = require("./routesGroup/notesRoutesGroup");
 
+// Import notesMiddlewaresgroup
 const notesMiddlewaresGroup = require("./middlewaresGroup/notesMiddlewaresGroup");
+
+//Import keepAlive
+const keepAlive = require("./helpers/keepAlive");
 // Use the 'cors' middleware to allow cross-origin requests
 app.use(require("cors")());
 
@@ -24,4 +29,8 @@ notesRoutesGroup(app);
 notesMiddlewaresGroup(app);
 // Listen at PORT
 const PORT = process.env.PORT || 3001;
+
 app.listen(PORT);
+
+// Node fetch
+keepAlive();
